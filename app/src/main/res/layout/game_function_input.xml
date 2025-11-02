@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:gravity="center_horizontal"
+    android:background="@drawable/background_farm_gradient"
+    tools:context=".MainActivity">
+
+    <!-- 🔹 Título / Función -->
+    <TextView
+        android:id="@+id/tv_function"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="f(x) = -1x² + 0x - 3"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#2E7D32"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:elevation="4dp" />
+
+    <!-- 🔹 Campo de entrada + botón evaluar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="6dp">
+
+        <EditText
+            android:id="@+id/edit_result"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Ingresa la raíz"
+            android:inputType="numberDecimal"
+            android:padding="10dp"
+            android:background="@drawable/rounded_edittext"
+            android:textSize="16sp"
+            android:textColor="#33691E"
+            android:textColorHint="#689F38" />
+
+        <Button
+            android:id="@+id/btn_evaluate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="EVALUAR"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:backgroundTint="#009688"
+            android:textColor="#FFFFFF"
+            android:layout_marginStart="8dp"
+            android:elevation="3dp" />
+    </LinearLayout>
+
+</LinearLayout>

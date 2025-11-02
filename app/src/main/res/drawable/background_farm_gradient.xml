@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Fondo degradado animado: cielo a campo -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Capa base: gradiente del cielo al campo -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="linear"
+                android:angle="270"
+                android:startColor="#BBDEFB"
+                android:centerColor="#FFF9C4"
+                android:endColor="#A5D6A7"
+                android:centerY="0.55" />
+        </shape>
+    </item>
+
+    <!-- Capa semitransparente animada para efecto de brillo -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="linear"
+                android:angle="270"
+                android:startColor="#00FFFFFF"
+                android:centerColor="#1AFFFFFF"
+                android:endColor="#00FFFFFF"
+                android:centerY="0.4" />
+        </shape>
+    </item>
+</layer-list>

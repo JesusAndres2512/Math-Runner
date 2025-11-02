@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 🎨 Paleta principal estilo granja / cielo -->
+    <color name="colorSkyLight">#EAF6FF</color>       <!-- Fondo general del cielo -->
+    <color name="colorSkyMedium">#B3E5FC</color>     <!-- Cielo medio (área de juego) -->
+    <color name="colorGrass">#A5D6A7</color>         <!-- Verde pradera suave -->
+    <color name="colorButton">#FFC107</color>        <!-- Amarillo maíz (botones de movimiento) -->
+    <color name="colorAccent">#009688</color>        <!-- Verde azulado (botón Evaluar) -->
+    <color name="colorTextDark">#333333</color>      <!-- Texto oscuro principal -->
+    <color name="colorTextLight">#FFFFFF</color>     <!-- Texto claro sobre fondo oscuro -->
+    <color name="colorStrokeLight">#90CAF9</color>   <!-- Borde azul claro para inputs / WebView -->
+    <color name="colorPlayer">#FFEB3B</color>        <!-- Amarillo del pollito -->
+    <color name="colorObstacle">#8D6E63</color>      <!-- Marrón madera -->
+    <color name="colorGoal">#E91E63</color>          <!-- Rosado / manzana meta -->
+    <color name="sky_blue">#87CEEB</color>
+
+</resources>

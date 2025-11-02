@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Tema principal del juego -->
+    <style name="Theme.MathRunner" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Fondo general del juego (cielo) -->
+        <item name="android:windowBackground">@color/colorSkyLight</item>
+
+        <!-- Colores principales -->
+        <item name="colorPrimary">@color/colorSkyMedium</item>
+        <item name="colorPrimaryDark">@color/colorGrass</item>
+        <item name="colorAccent">@color/colorButton</item>
+
+        <!-- Estilo general sin ActionBar -->
+        <item name="android:statusBarColor">@color/colorGrass</item>
+        <item name="android:navigationBarColor">@color/colorGrass</item>
+        <item name="android:textColor">@color/colorTextDark</item>
+    </style>
+
+</resources>
