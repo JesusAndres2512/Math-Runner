@@ -71,6 +71,10 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
+    implementation("com.google.code.gson:gson:2.10.1")
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
+    implementation("androidx.appcompat:appcompat:1.7.0")
+    implementation("com.google.code.gson:gson:2.10.1")
 
     // --- UI clásica (para GameView y layouts XML) ---
     implementation(libs.androidx.appcompat)
@@ -84,6 +88,8 @@ dependencies {
 
     // --- WebView (para contenido educativo opcional) ---
     implementation("androidx.webkit:webkit:1.11.0")
+    implementation(libs.androidx.recyclerview)
+    implementation(libs.androidx.constraintlayout)
 
     // --- Testing ---
     testImplementation(libs.junit)

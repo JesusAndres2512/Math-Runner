@@ -6,18 +6,17 @@ import android.graphics.Rect;
 
 public class Player {
 
-    private float x, y; // coordenadas del CENTRO
+    private float x, y;
     private int width, height;
     private float startX, startY;
     private Bitmap sprite;
     private int score = 0;
     private Rect rect;
 
-    // 🔹 Variables para animación
     private boolean isJumping = false;
     private float jumpOffset = 0f;
-    private float jumpSpeed = 6f;     // velocidad del salto
-    private float jumpAmplitude = 25f; // altura máxima
+    private float jumpSpeed = 6f;
+    private float jumpAmplitude = 25f;
     private float jumpProgress = 0f;
 
     public Player(float x, float y, int width, int height, Bitmap sprite) {
@@ -32,19 +31,17 @@ public class Player {
     }
 
     public void draw(Canvas canvas) {
-        if (sprite != null) {
+        if (sprite != null && canvas != null) {
             float drawY = y - height / 2f - jumpOffset;
             canvas.drawBitmap(sprite, x - width / 2f, drawY, null);
         }
     }
 
     public void update() {
-        // 🔸 Animación de salto (rebote leve)
         if (isJumping) {
             jumpProgress += jumpSpeed;
             jumpOffset = (float) (Math.sin(Math.toRadians(jumpProgress)) * jumpAmplitude);
-
-            if (jumpProgress >= 180) { // fin del salto
+            if (jumpProgress >= 180) {
                 isJumping = false;
                 jumpOffset = 0f;
                 jumpProgress = 0f;
@@ -52,10 +49,11 @@ public class Player {
         }
     }
 
-    // Mueve al jugador y activa el rebote
-    public void move(float dx, float dy) {
-        x += dx;
-        y += dy;
+    public void move(float dx, float dy, int screenWidth, int screenHeight) {
+        float newX = x + dx;
+        float newY = y + dy;
+        if (newX - width / 2f >= 0 && newX + width / 2f <= screenWidth) x = newX;
+        if (newY - height / 2f >= 0 && newY + height / 2f <= screenHeight) y = newY;
         startJump();
         updateRect();
     }
@@ -93,7 +91,6 @@ public class Player {
 
     public float getX() { return x; }
     public float getY() { return y; }
-
     public int getScore() { return score; }
     public void setScore(int score) { this.score = score; }
 
@@ -102,5 +99,4 @@ public class Player {
         this.y = y;
         updateRect();
     }
-
 }

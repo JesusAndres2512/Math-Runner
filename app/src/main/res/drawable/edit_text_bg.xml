@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!-- Fondo blanco o ligeramente gris -->
+    <solid android:color="#FFFFFF" />
+
+    <!-- Bordes suaves -->
+    <corners android:radius="16dp" />
+
+    <!-- Borde azul claro consistente con los botones -->
+    <stroke
+        android:width="2dp"
+        android:color="#4A90E2" />
+
+    <!-- Pequeño sombreado interno -->
+    <padding
+        android:left="12dp"
+        android:top="10dp"
+        android:right="12dp"
+        android:bottom="10dp" />
+</shape>

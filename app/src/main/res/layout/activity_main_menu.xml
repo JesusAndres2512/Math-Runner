@@ -1,0 +1,62 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_forest"
+    tools:context=".MainMenuActivity">
+
+    <!-- Logo central -->
+    <ImageView
+    android:id="@+id/imgLogo"
+    android:layout_width="250dp"
+    android:layout_height="250dp"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="100dp"
+    android:src="@drawable/logo_math_runner"
+    android:contentDescription="@string/app_name"
+    android:adjustViewBounds="true"
+    android:scaleType="fitCenter" />
+
+    <!-- Botón JUGAR -->
+    <Button
+    android:id="@+id/btnPlay"
+    android:layout_width="250dp"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/imgLogo"
+    android:layout_marginTop="30dp"
+    android:layout_centerHorizontal="true"
+    android:text="JUGAR"
+    android:textStyle="bold"
+    android:textAllCaps="true"
+    android:textColor="@android:color/white"
+    android:background="@drawable/btn_green" />
+
+        <!-- Botón PUNTAJES ALTOS -->
+    <Button
+    android:id="@+id/btnScores"
+    android:layout_width="250dp"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/btnPlay"
+    android:layout_marginTop="15dp"
+    android:layout_centerHorizontal="true"
+    android:text="PUNTAJES ALTOS"
+    android:textStyle="bold"
+    android:textAllCaps="true"
+    android:textColor="@android:color/white"
+    android:background="@drawable/btn_blue" />
+
+        <!-- Botón CONFIGURACIÓN -->
+    <Button
+    android:id="@+id/btnSettings"
+    android:layout_width="250dp"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/btnScores"
+    android:layout_marginTop="15dp"
+    android:layout_centerHorizontal="true"
+    android:text="CONFIGURACIÓN"
+    android:textStyle="bold"
+    android:textAllCaps="true"
+    android:textColor="@android:color/white"
+    android:background="@drawable/btn_gray_black" />
+
+</RelativeLayout>

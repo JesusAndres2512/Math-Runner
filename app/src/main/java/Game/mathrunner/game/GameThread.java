@@ -5,8 +5,8 @@ import android.view.SurfaceHolder;
 import android.util.Log;
 
 /**
- * Hilo principal del juego "Pollito en Marcha".
- * Controla el ciclo de actualización y renderizado a 30 FPS.
+ * Hilo principal del juego.
+ * Controla el ciclo de actualización y renderizado a ~30 FPS.
  */
 public class GameThread extends Thread {
 
@@ -34,7 +34,7 @@ public class GameThread extends Thread {
         int frameCount = 0;
         long targetTime = 1000 / FPS;
 
-        Log.i("GameThread", "🔄 Ciclo principal iniciado");
+        Log.i("GameThread", "🟢 Ciclo principal iniciado");
 
         while (running) {
             startTime = System.nanoTime();
@@ -44,8 +44,8 @@ public class GameThread extends Thread {
                 canvas = surfaceHolder.lockCanvas();
                 if (canvas != null) {
                     synchronized (surfaceHolder) {
-                        gameView.update(); // Actualiza lógica
-                        gameView.draw(canvas); // Redibuja
+                        gameView.update();
+                        gameView.draw(canvas);
                     }
                 }
             } catch (Exception e) {
@@ -82,6 +82,6 @@ public class GameThread extends Thread {
             }
         }
 
-        Log.i("GameThread", "🛑 Hilo del juego detenido correctamente.");
+        Log.i("GameThread", "🔴 Hilo del juego detenido correctamente.");
     }
 }

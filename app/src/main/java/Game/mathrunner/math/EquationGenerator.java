@@ -8,17 +8,18 @@ public class EquationGenerator {
 
     private int a, b, c;
     private double[] roots;
+    private final Random random = new Random();
 
     public EquationGenerator() {
         generarFuncionAleatoria();
     }
 
-    /** Genera una nueva ecuación -> compatible con MainActivity */
+    /** Genera una nueva ecuación aleatoria */
     public void generateNew() {
         generarFuncionAleatoria();
     }
 
-    /** Devuelve LaTeX de la ecuación actual -> compatible con MainActivity */
+    /** Devuelve la ecuación en formato LaTeX */
     public String getLatexForCurrent() {
         return generarLatex();
     }
@@ -28,66 +29,119 @@ public class EquationGenerator {
         try {
             double userVal = Double.parseDouble(input);
             if (roots == null || roots.length < 2) return false;
-            // Verificar si el valor coincide con alguna raíz dentro de la tolerancia
-            if (!Double.isNaN(roots[0]) && Math.abs(userVal - roots[0]) <= tolerance) return true;
-            if (!Double.isNaN(roots[1]) && Math.abs(userVal - roots[1]) <= tolerance) return true;
+            // Verificar coincidencia con alguna raíz real
+            for (double r : roots) {
+                if (!Double.isNaN(r) && Math.abs(userVal - r) <= tolerance) return true;
+            }
             return false;
         } catch (NumberFormatException e) {
             return false;
         }
     }
 
-    /** Genera la ecuación aleatoria */
+    /** Genera una ecuación con mayor variedad */
     public void generarFuncionAleatoria() {
-        Random random = new Random();
-        do {
-            a = random.nextInt(11) - 5; // -5 a 5
-        } while (a == 0); // evitar a=0
-        b = random.nextInt(11) - 5;
-        c = random.nextInt(11) - 5;
+        int tipo = random.nextInt(4); // 0..3 → 4 tipos de generación
+
+        switch (tipo) {
+            case 0:
+                // 🔹 Generar ecuación con raíces reales aleatorias
+                generarDesdeRaicesReales(
+
+                );
+                break;
+            case 1:
+                // 🔹 Generar ecuación con raíces enteras pequeñas
+                generarDesdeRaicesEnteras();
+                break;
+            case 2:
+                // 🔹 Ecuación con raíces iguales (discriminante = 0)
+                generarConRaicesIguales();
+                break;
+            default:
+                // 🔹 Ecuación completamente aleatoria
+                generarCompletamenteAleatoria();
+                break;
+        }
 
         calcularRaices();
     }
 
-    /** Calcula las raíces reales (NaN si complejas) */
-    private void calcularRaices() {
-        double discriminante = b * b - 4 * a * c;
+    /** Tipo 1: Genera ecuación desde raíces reales */
+    private void generarDesdeRaicesReales() {
+        double r1 = random.nextInt(9) - 4; // -4 a 4
+        double r2 = random.nextInt(9) - 4;
+        if (r1 == r2) r2 += 1; // asegurar raíces diferentes
+        if (a == 0) a = 1;
+        a = random.nextInt(3) + 1; // a = 1..3
+        b = (int) (-a * (r1 + r2));
+        c = (int) (a * r1 * r2);
 
-        if (discriminante >= 0) {
-            double sqrtDisc = Math.sqrt(discriminante);
-            double x1 = (-b + sqrtDisc) / (2 * a);
-            double x2 = (-b - sqrtDisc) / (2 * a);
-            roots = new double[]{x1, x2};
+    }
+
+    /** Tipo 2: Ecuación con raíces enteras */
+    private void generarDesdeRaicesEnteras() {
+        int r1 = random.nextInt(7) - 3; // -3..3
+        int r2 = random.nextInt(7) - 3;
+        if (r1 == r2) r2 += 1;
+        a = 1;
+        b = -(r1 + r2);
+        c = r1 * r2;
+    }
+
+    /** Tipo 3: Raíces dobles (discriminante 0) */
+    private void generarConRaicesIguales() {
+        int r = random.nextInt(6) - 3;
+        a = random.nextInt(3) + 1;
+        b = -2 * a * r;
+        c = a * r * r;
+    }
+
+    /** Tipo 4: Completamente aleatoria */
+    private void generarCompletamenteAleatoria() {
+        do {
+            a = random.nextInt(9) - 4; // -4..4
+        } while (a == 0);
+        b = random.nextInt(19) - 9; // -9..9
+        c = random.nextInt(19) - 9;
+    }
+
+    /** Calcula raíces reales (NaN si no existen) */
+    private void calcularRaices() {
+        double disc = b * b - 4.0 * a * c;
+        if (disc >= 0) {
+            double sqrtDisc = Math.sqrt(disc);
+            roots = new double[]{
+                    (-b + sqrtDisc) / (2 * a),
+                    (-b - sqrtDisc) / (2 * a)
+            };
         } else {
             roots = new double[]{Double.NaN, Double.NaN};
         }
     }
 
-    /** Devuelve la ecuación en formato LaTeX */
+    /** Devuelve ecuación en formato LaTeX */
     public String generarLatex() {
-        StringBuilder sb = new StringBuilder("f(x) = ");
+        StringBuilder sb = new StringBuilder();
 
         sb.append(a).append("x^2 ");
-        if (b >= 0) sb.append("+ ").append(b).append("x ");
-        else sb.append("- ").append(-b).append("x ");
-
-        if (c >= 0) sb.append("+ ").append(c);
-        else sb.append("- ").append(-c);
+        sb.append(b >= 0 ? "+ " + b : "- " + (-b)).append("x ");
+        sb.append(c >= 0 ? "+ " + c : "- " + (-c));
 
         return sb.toString();
     }
 
-    /** Retorna las raíces */
+    /** Retorna raíces */
     public double[] getRoots() {
         return roots;
     }
 
-    /** Retorna los coeficientes */
+    /** Retorna coeficientes */
     public int[] getCoefficients() {
         return new int[]{a, b, c};
     }
 
-    /** Método auxiliar para mostrar la ecuación en un WebView */
+    /** Muestra ecuación en WebView (opcional, modo demostración) */
     public void mostrarEnWebView(Context context, WebView webView) {
         String ecuacionLatex = generarLatex();
         String html = "<html>" +
